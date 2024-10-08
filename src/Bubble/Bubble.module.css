@@ -1,0 +1,24 @@
+/* styles.css */
+.bubble {
+  color: black;
+  position: relative;
+  display: inline-block;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  max-width: 300px;
+  font-family: "Comic Sans MS", cursive;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  border-width: 20px 10px 0;
+  border-style: solid;
+  border-color: #000 transparent;
+  display: block;
+  width: 0;
+}
