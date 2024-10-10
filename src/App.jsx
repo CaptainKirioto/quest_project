@@ -11,7 +11,7 @@ function App() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const checkAnswer = (answer) => {
-    if (answer === currentQuestion.correctAnswer) {
+    if (currentQuestion.correctAnswer.includes(answer)) {
       alert("Correct!");
       setUserAnswer("");
       if (currentQuestionIndex < questions.length - 1) {
@@ -38,8 +38,8 @@ function App() {
 
   return (
     <>
-      {/* <img src={currentQuestion.image} alt="Question bubble" /> */}
-      <Bubble text={currentQuestion.text} />
+      <img src={currentQuestion.image} alt="Question bubble" />
+      {/* <Bubble text={currentQuestion.text} /> */}
       <Riddler />
       {currentQuestion.type === "input" ? (
         <div>
