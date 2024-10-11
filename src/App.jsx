@@ -2,7 +2,6 @@ import s from "./App.module.css";
 import Riddler from "./Riddler/Riddler";
 import { questions } from "./Questions";
 import { useState } from "react";
-import Bubble from "./Bubble/Bubble";
 
 function App() {
   const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
@@ -46,9 +45,9 @@ function App() {
     setUserAnswer(e.target.value);
   };
 
-  const handleButtonClick = (answer) => {
-    checkAnswer(answer);
-  };
+  // const handleButtonClick = (answer) => {
+  //   checkAnswer(answer);
+  // };
 
   const handleSubmit = () => {
     checkAnswer(userAnswer);
