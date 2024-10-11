@@ -1,4 +1,4 @@
-import "./App.css";
+import s from "./App.module.css";
 import Riddler from "./Riddler/Riddler";
 import { questions } from "./Questions";
 import { useState } from "react";
@@ -11,9 +11,22 @@ function App() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const checkAnswer = (answer) => {
-    if (currentQuestion.correctAnswer.includes(answer)) {
-      alert("Correct!");
+    if (
+      !currentQuestion.correctAnswer ||
+      !Array.isArray(currentQuestion.correctAnswer)
+    ) {
+      console.error("No correctAnswers array found for this question");
+      return;
+    }
+    const normalizedAnswer = answer.trim().toLowerCase();
+    const correctAnswer = currentQuestion.correctAnswer.map((ans) =>
+      ans.toLowerCase()
+    );
+
+    if (correctAnswer.includes(normalizedAnswer)) {
+      // alert("Correct");
       setUserAnswer("");
+
       if (currentQuestionIndex < questions.length - 1) {
         setcurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
@@ -36,15 +49,34 @@ function App() {
     checkAnswer(userAnswer);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      checkAnswer(userAnswer);
+    }
+  };
+
   return (
     <>
-      <img src={currentQuestion.image} alt="Question bubble" />
+      <img
+        className={s.image}
+        src={currentQuestion.image}
+        alt="Question bubble"
+      />
       {/* <Bubble text={currentQuestion.text} /> */}
       <Riddler />
       {currentQuestion.type === "input" ? (
         <div>
-          <input type="text" value={userAnswer} onChange={handleInputChange} />
-          <button onClick={handleSubmit}>Submit</button>
+          <input
+            className={s.input}
+            type="text"
+            value={userAnswer}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          <button className={s.button} onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       ) : (
         <div>Hi</div>

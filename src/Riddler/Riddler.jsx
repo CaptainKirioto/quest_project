@@ -7,15 +7,8 @@ import s from "./Riddler.module.css";
 
 const Riddler = () => {
   return (
-    <div className={s.wrap}>
-      {/* ----- Speech Bubble ----- */}
-
-      {/* <img className={s.bubble} src={pixel_speech_bubble} alt="bubble" /> */}
-
-      {/* ----- Pumpkin ----- */}
-      <div className={s.pumpkinWrap}>
-        <div className={s.pumpkin}></div>
-      </div>
+    <div className={s.pumpkinWrap}>
+      <div className={s.pumpkin}></div>
     </div>
   );
 };
