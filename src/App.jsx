@@ -7,6 +7,7 @@ import Bubble from "./Bubble/Bubble";
 function App() {
   const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
+  const [hide, setHide] = useState(false);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -24,9 +25,13 @@ function App() {
     );
 
     if (correctAnswer.includes(normalizedAnswer)) {
-      // alert("Correct");
       setUserAnswer("");
-
+      alert(currentQuestion.alert);
+      if (currentQuestion.id === 12) {
+        alert(
+          "The test is over, I want to eat some candies or scare some children, whatever, now go and look for treasures"
+        );
+      }
       if (currentQuestionIndex < questions.length - 1) {
         setcurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
@@ -56,32 +61,53 @@ function App() {
     }
   };
 
+  const handleBye = () => {
+    setHide(true);
+  };
+
   return (
-    <>
-      <img
-        className={s.image}
-        src={currentQuestion.image}
-        alt="Question bubble"
-      />
-      {/* <Bubble text={currentQuestion.text} /> */}
-      <Riddler />
-      {currentQuestion.type === "input" ? (
+    <div className={s.wrap}>
+      {hide ? (
         <div>
-          <input
-            className={s.input}
-            type="text"
-            value={userAnswer}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
+          <img
+            className={s.patch}
+            src="../bubbles/patch.png"
+            width="1500px"
+            height="1100px"
           />
-          <button className={s.button} onClick={handleSubmit}>
-            Submit
-          </button>
+          <img className={s.end} src="../bubbles/fin_bubble.png" />
         </div>
       ) : (
-        <div>Hi</div>
+        <div>
+          <img
+            className={s.image}
+            src={currentQuestion.image}
+            alt="Question bubble"
+          />
+          <Riddler />
+          {currentQuestion.type === "input" ? (
+            <div>
+              <p className={s.label}>Dare to answer here...</p>
+              <input
+                className={s.input}
+                type="text"
+                id="answer"
+                value={userAnswer}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+              />
+              <button className={s.button} onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          ) : (
+            <button className={s.fin} onClick={handleBye}>
+              Bye!
+            </button>
+          )}
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
