@@ -4,7 +4,7 @@ export const questions = [
     type: "input",
     text: "Hi there, young man. I feel something special about you",
     correctAnswer: ["Jack", "Jack Skellington"],
-    image: "../../bubbles/intro.png",
+    image: "../../bubbles/intro1.png",
     alert: "Are you ready to rrrrrrrrrrumble?!",
   },
   {
@@ -77,7 +77,13 @@ export const questions = [
     id: 10,
     type: "input",
     text: "Name 1 of the detective Littlejohn's favourite songs",
-    correctAnswer: ["My Way", "This is Halloween", "Twist"],
+    correctAnswer: [
+      "My Way",
+      "This is Halloween",
+      "Twist",
+      "New magic wand",
+      "That's Life",
+    ],
     image: "../../bubbles/song_stat.png",
     alert: "Breaking the 4th wall, huh, detective?",
   },
